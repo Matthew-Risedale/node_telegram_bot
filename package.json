@@ -1,0 +1,11 @@
+{
+  "name": "node_telegram_bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Matthew-Risedale/node_telegram_bot.git",
+  "author": "Constantine Isaev",
+  "license": "MIT",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.30.0"
+  }
+}
