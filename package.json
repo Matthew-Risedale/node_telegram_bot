@@ -4,8 +4,13 @@
   "main": "index.js",
   "repository": "git@github.com:Matthew-Risedale/node_telegram_bot.git",
   "author": "Constantine Isaev",
+  "scripts": {
+    "start-bot": "node index.js",
+    "start-server": "nodemon --exec babel-node ./server/server.js --ignore public/"
+  },
   "license": "MIT",
   "dependencies": {
+    "mongoose": "^5.0.12",
     "node-telegram-bot-api": "^0.30.0"
   }
 }
