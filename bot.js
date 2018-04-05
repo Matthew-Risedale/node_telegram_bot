@@ -12,9 +12,15 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
   // of the message
-  console.log(1)
-  logger.writeLog(msg, 'echo');
-  console.log(3)
+  
+  logger.writeUser(msg)
+    .then(res => console.log(res))
+  
+  logger.writeCommand('echo')
+    .then(res => console.log(res))
+  
+  logger.writeStat(msg, 'echo')
+    .then(res => console.log(res))
 
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever"
@@ -26,7 +32,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 // Listen for any kind of message.
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-
+ 
   // send a message to the chat acknowledging receipt of their message
   bot.sendMessage(chatId, 'Received your message');
 });

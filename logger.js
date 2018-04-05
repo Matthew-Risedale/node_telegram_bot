@@ -12,34 +12,50 @@ mongoose.connect(mongoURL)
 
 class Logger{
 
-  writeLog(msg, commandName) {
-
-    console.log(2)
-
+  async writeUser(msg){
+    let trigger = true;
     const user = new userModel({
       userId: msg.from.id,
       userName: msg.from.username,
       firstName: msg.from.first_name,
       lastName: msg.from.last_name
     });
-    user.save( err => console.log(err));
+    try {
+      await user.save();
+    } catch(e) {
+      trigger = false;
+    }
+    return trigger;
+  }
 
+  async writeCommand(commandName){
+    let trigger = true;
+    const command = new commandModel({
+      commandName
+    })
+    let test;
+    try {
+      await command.save();
+    } catch(e) {
+      trigger = false;
+    }
+    return trigger
+  }
+
+  async writeStat(msg, commandName) {
+    let trigger = true;
     const stat = new statModel({
       time: msg.date,
       userId: msg.from.id,
       commandName
     });
-    stat.save( err => console.log(err));
-
-    const command = new commandModel({
-      commandName
-    })
-
-    command.save( err => console.log(err + 'command'))
-
-    console.log(msg)
+    try {
+      await stat.save();
+    } catch(e) {
+      trigger = false;
+    }
+    return trigger;
   }
-
 }
 
 module.exports = Logger;
