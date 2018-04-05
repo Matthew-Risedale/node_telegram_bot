@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const commandSchema = new mongoose.Schema({
-  commandId: Number,
   commandName: {type: String, required: true, unique: true}
 });
 
