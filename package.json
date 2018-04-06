@@ -6,7 +6,8 @@
   "author": "Constantine Isaev",
   "scripts": {
     "start-bot": "node bot.js",
-    "start-client": "webpack-dev-server --hot"
+    "start-client": "webpack-dev-server --hot",
+    "start-server": "node server.js"
   },
   "license": "MIT",
   "keywords": [

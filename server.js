@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const emitter = require('./emitter');
 
 const app = express();
 const server = require('http').createServer(app);

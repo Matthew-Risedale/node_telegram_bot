@@ -1,8 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 
-const socketUrl = 'http://127.0.0.1:3001'
-
+const socketUrl = 'http://127.0.0.1:3001';
 
 class App extends React.Component {
     
@@ -11,7 +10,6 @@ class App extends React.Component {
         this.state = {
             socket: false
         }
-
     }
 
     componentDidMount() {
@@ -22,6 +20,9 @@ class App extends React.Component {
         const socket = io(socketUrl)
         socket.on('connect', () => {
             console.log('connected')
+            this.setState({
+                socket: true
+            })
         })
     }
 

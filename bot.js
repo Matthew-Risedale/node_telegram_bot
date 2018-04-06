@@ -1,5 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const Logger = require('./logger');
+const emitter = require('./emitter')
 
 const token = '470596377:AAGUPgVwBp-1XAVKPiVZOMaCrQil5iwucOM';
 const logger = new Logger();
@@ -14,13 +15,15 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   // of the message
   
   logger.writeUser(msg)
-    .then(res => console.log(res))
+    .then(res => {
+      res ? emitter.emit('userWritten') : null;
+    })
   
   logger.writeCommand('echo')
-    .then(res => console.log(res))
+    .then(res => console.log(emitter))
   
   logger.writeStat(msg, 'echo')
-    .then(res => console.log(res))
+    .then(res => console.log(emitter))
 
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever"
