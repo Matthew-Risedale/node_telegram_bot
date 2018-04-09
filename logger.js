@@ -12,13 +12,15 @@ mongoose.connect(mongoURL)
 
 class Logger{
 
-  async writeUser(msg){
+  async writeUser(msg, photoUrl){
+    console.log(photoUrl);
     let trigger = true;
     const user = new userModel({
       userId: msg.from.id,
       userName: msg.from.username,
       firstName: msg.from.first_name,
-      lastName: msg.from.last_name
+      lastName: msg.from.last_name,
+      photoUrl
     });
     try {
       await user.save();

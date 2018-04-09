@@ -1,3 +1,4 @@
+
 const TelegramBot = require('node-telegram-bot-api');
 const Logger = require('./logger');
 const emitter = require('./emitter')
@@ -10,20 +11,19 @@ const bot = new TelegramBot(token, {polling: true});
 
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
-  // 'msg' is the received Message from Telegram
-  // 'match' is the result of executing the regexp above on the text content
-  // of the message
-  
-  logger.writeUser(msg)
+
+  getPhotoUrl(msg).then(photoUrl => {
+    logger.writeUser(msg, photoUrl)
     .then(res => {
       res ? emitter.emit('userWritten') : null;
     })
+  })
   
   logger.writeCommand('echo')
-    .then(res => console.log(emitter))
+    .then(res => res)
   
   logger.writeStat(msg, 'echo')
-    .then(res => console.log(emitter))
+    .then(res => res)
 
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever"
@@ -39,3 +39,16 @@ bot.on('message', (msg) => {
   // send a message to the chat acknowledging receipt of their message
   bot.sendMessage(chatId, 'Received your message');
 });
+
+function getPhotoUrl(msg){
+  return bot.getUserProfilePhotos(msg.from.id)
+    .then(res => {
+      let file_id = res.photos[0][0].file_id;
+      return bot.getFile(file_id)
+    }).then(res => {
+      let file_path = res.file_path;
+      let photo_url = `https://api.telegram.org/file/bot${token}/${file_path}`;
+      photo_URL = photo_url;
+      return photo_URL
+    });
+}

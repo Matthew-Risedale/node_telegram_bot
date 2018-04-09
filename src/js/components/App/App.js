@@ -8,11 +8,13 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            socket: false
+            socket: false,
+            users: []
         }
     }
 
     componentDidMount() {
+        
         this.initSocket()
     }
 
@@ -23,12 +25,30 @@ class App extends React.Component {
             this.setState({
                 socket: true
             })
+            socket.on('newUser', (user) => {
+                let users = this.state.users;
+                users.push(user[user.length - 1]);
+                this.setState({
+                    users
+                })
+            })
         })
     }
 
     render() {
-        return(
-            <h1> telegram bot statistics </h1>
+        let userList = this.state.users.map((user) => {
+            return (
+                <div>
+            <img src={user.photoUrl}/>
+            <p>{user.userName}</p>
+            </div>
+        )
+        })
+        return (
+            <div>
+                <h1> telegram bot statistics </h1>
+                {userList}
+            </div>
         )
     }
 }
