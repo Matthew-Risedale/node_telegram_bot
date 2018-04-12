@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const emitter = require('./emitter');
 const bot = require('./bot');
+const cors = require('cors');
 const {commandModel, userModel, statModel} = require('./models');
 
 const app = express();
@@ -11,7 +12,9 @@ const PORT = process.env.PORT || 3001;
 
 io.set('origins', 'http://localhost:*');
 
+app.use(cors())
 app.use('/', express.static(path.join(__dirname, 'public')));
+app.use(require('./routes'));
 
 const connections = [];
 

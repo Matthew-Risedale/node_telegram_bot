@@ -1,0 +1,114 @@
+@import '../../../fonts/fonts.css';
+
+$primary_blue: #4C7799;
+$primary_gray: #E4E8EE;
+
+body{
+  font-family: 'lucida_granderegular';
+  background: $primary_gray;
+}
+
+.header{
+  background: $primary_blue;
+  height: 100px;
+  h1{
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    font-weight: normal;
+    padding-top: 20px;
+  }
+}
+
+section{
+  margin-bottom: 30px;
+}
+
+.section{
+  &Header{
+    overflow: auto;
+  }
+
+  &Title{
+    color: $primary_blue;
+    font-size: 22px;
+    float: left;
+  }
+
+  &More{
+
+    color: $primary_blue;
+    font-size: 22px;
+    padding-top: 20px;
+    padding-right: 25px;
+    float: right;
+    text-decoration: none;
+    position: relative;
+    &::after{
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-bottom: 4px solid $primary_blue;
+      border-right: 4px solid $primary_blue;
+      transform: rotate(-45deg);
+      border-radius: 3px;
+      bottom: 5px;
+      right: 5px;
+    }
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.sectionUsers{
+  width: 100%;
+  margin: 0 auto;
+  max-width: 970px;
+}
+
+.usersContainer{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  overflow: auto;
+  background: #fff;
+  padding: 20px 10px 0px 10px;
+  border-radius: 3px;
+}
+
+.user{
+  animation: fadeOut 1.2s;
+  margin: 0 15px;
+
+  img{
+    border-radius: 50%;
+  }
+  p{
+    text-align: center;
+  }
+}
+
+.statsContainer{
+  background: #fff;
+  width: 100%;
+  padding: 20px 10px 0px 10px;
+  border-radius: 3px;
+  max-height: 400px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  table{
+    border-collapse: collapse;
+    width: 100%;
+    tr{
+      border-bottom: 1px solid $primary_gray;
+      padding: 10px 0;
+    }
+  }
+}
+
+@keyframes fadeOut {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}

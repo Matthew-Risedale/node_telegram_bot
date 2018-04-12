@@ -1,9 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const publicPath = '/public/';
 
 const indexHTML = new HtmlWebpackPlugin({
-    template: "./src/index.html"
+    template: "./src/index.html",
+    filename: "index.html"
 });
 
 module.exports = {
@@ -30,7 +33,8 @@ module.exports = {
                 }, {
                     loader: "css-loader", options: {
                         modules: true,
-                        sourceMap: true
+                        sourceMap: true,
+                        localIdentName: '[local]___[hash:base64:5]'
                     }
                 }, {
                     loader: "sass-loader", options: {
@@ -45,7 +49,17 @@ module.exports = {
                 }, {
                     loader: "css-loader"
                 }]
-            }
+            },
+            {
+                test: /\.(ttf|woff|woff2)$/,
+                use:{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                    }
+                }
+            },
         ]
     },
     devServer: {

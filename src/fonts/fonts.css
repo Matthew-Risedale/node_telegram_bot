@@ -1,0 +1,20 @@
+
+@font-face {
+    font-family: 'lucida_granderegular';
+    src: local('Lucida Grande'), local('LucidaGrande'),
+         url('/LudicaGrande/lucidagrande-webfont.woff2') format('woff2'),
+         url('/LudicaGrande/lucidagrande-webfont.woff') format('woff'),
+         url('/LudicaGrande/lucidagrande-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'lucida_grandebold';
+    src: local('Lucida Grande'), local('LucidaGrande'),
+         url('/LudicaGrande/lucidagrandebold-webfont.woff2') format('woff2'),
+         url('/LudicaGrande/lucidagrandebold-webfont.woff') format('woff'),
+         url('/LudicaGrande/lucidagrandebold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
