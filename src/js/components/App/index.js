@@ -1,4 +1,3 @@
-import App from './App.js'
-// import "../../../fonts/LucidaGrande/lucidagrande-webfont.ttf"
+import App from './App.js';
 
 export default App;
